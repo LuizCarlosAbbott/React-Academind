@@ -7,25 +7,25 @@ class App extends Component {
     persons: [
       { id: "asd", name: "Luiz", age: 23 },
       { id: "asd1", name: "Valéria", age: 23 },
-      { id: "asd2", name: "Igor", age: 0.1 }
+      { id: "asd2", name: "Igor", age: 0.1 },
     ],
     otherState: "some other value",
-    showPersons: false
+    showPersons: false,
   };
 
-  switchNameHandler = newName => {
+  switchNameHandler = (newName) => {
     // console.log("Was clicked!");
     this.setState({
       persons: [
         { name: newName, age: 23 },
         { name: "Valéria", age: 24 },
-        { name: "Igor", age: 0.1 }
-      ]
+        { name: "Igor", age: 0.1 },
+      ],
     });
   };
 
   nameChangeHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => {
+    const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
     });
 
@@ -39,11 +39,11 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState({
-      persons: persons
+      persons: persons,
     });
   };
 
-  deletePersonHandler = personIndex => {
+  deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
@@ -57,11 +57,12 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
-      cursor: "pointer"
+      cursor: "pointer",
     };
 
     let persons = null;
@@ -76,12 +77,13 @@ class App extends Component {
                 name={person.name}
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
-                changed={event => this.nameChangeHandler(event, person.id)}
+                changed={(event) => this.nameChangeHandler(event, person.id)}
               />
             );
           })}
         </div>
       );
+      style.backgroundColor = "red";
     }
 
     return (
